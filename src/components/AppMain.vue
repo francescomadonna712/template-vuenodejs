@@ -1,5 +1,10 @@
 <script>
+import AppCard from "./AppCard.vue";
+
 export default {
+    components: {
+        AppCard,
+    },
     name: "AppMain",
     data() {
         return {
@@ -16,14 +21,22 @@ export default {
             <option value="2">Two</option>
             <option value="3">Three</option>
         </select>
-        <div class="container-card">
-            <div class="black-bar">Found 39 cards</div>
-            1
-        </div>
+
+        <AppCard />
     </div>
+
+
+
 </template>
 
 <style scoped>
+.card-cnt {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
 .main-body {
     height: 170vh;
     background-color: #D48F38;
@@ -31,19 +44,20 @@ export default {
 
 }
 
-.container-card {
+.cnt {
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     background-color: white;
     color: black;
-    margin: 0 auto;
-    width: calc(100% - 30rem);
-    height: 150vh;
-    padding: 2rem;
+
 }
 
 .form-select {
     width: 8rem;
     position: relative;
-    left: 15rem;
+    left: 1rem;
     margin-bottom: 2rem;
 }
 
