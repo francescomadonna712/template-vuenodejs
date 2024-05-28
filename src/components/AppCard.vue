@@ -1,29 +1,41 @@
 <script>
-import iMieiDati from '../data/store.js';
+import axios from 'axios';
+
 export default {
-    name: "AppFooter",
     data() {
         return {
-            iMieiDati
-
+            cards: []
+        };
+    },
+    created() {
+        this.CardInfo();
+    },
+    methods: {
+        CardInfo() {
+            axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=25&offset=0')
+                .then(response => {
+                    this.cards = response.data.data;
+                })
         }
     }
-}
+};
+
 </script>
 
 <template>
     <div class="cnt">
         <div class="black-bar">Found 10 card</div>
-        <div v-for="card in iMieiDati.card" :key="card.name" class="card">
-            <div v-for="image in card.card_images" :key="image.image_url" class="card-images">
-                <img :src="image.image_url_small" alt="Small Card Image">
+        <div class="card-container">
+            <div class="card" v-for="card in cards" :key="card.id">
+                <img :src="card.card_images[0].image_url" :alt="card.name" class="card-image" />
+                <h5 class="name">{{ card.name }}</h5>
+                <p class="tipo">{{ card.archetype }}</p>
             </div>
-            <h5 class="name">{{ card.name }}</h5>
-            <p class="tipo">{{ card.archetype }}</p>
-
-
         </div>
     </div>
+
+
+
 </template>
 
 <style scoped>
@@ -39,29 +51,41 @@ export default {
 
 }
 
+.card-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
 .card {
 
     color: white;
     display: flex;
     align-items: center;
     background-color: #D48F38;
-
     margin: 18px;
-    width: 18rem;
+    width: 15rem;
 }
 
-.card-images img {
-    display: block;
-    height: 25rem;
-    margin-bottom: 3rem;
+.card-image {
+    width: 200px;
+    height: auto;
 
 }
 
 .name {
+    padding-top: 1rem;
+    text-align: center;
     font-weight: bold;
 }
 
 .tipo {
     color: black;
+}
+
+.list {
+    list-style: none;
 }
 </style>

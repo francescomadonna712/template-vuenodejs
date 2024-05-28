@@ -38,20 +38,16 @@ export default {
 }
 
 .main-body {
-    height: 170vh;
+
     background-color: #D48F38;
     padding: 2rem;
 
 }
 
 .cnt {
-    justify-content: center;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
     background-color: white;
-    color: black;
-
+    width: 80%;
+    margin: 0 auto;
 }
 
 .form-select {
@@ -62,7 +58,7 @@ export default {
 }
 
 .black-bar {
-    width: calc(100% -);
+    width: 100%;
     background-color: black;
     margin: 0 auto;
     height: 3rem;
